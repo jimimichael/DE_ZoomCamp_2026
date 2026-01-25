@@ -1,12 +1,9 @@
-
-# Module 1 Homework Solutions
-
 # Module 1 Homework - Data Engineering Zoomcamp 2026
 
-## Question 1: Understanding Docker Images
 
 **Command Used**:
 ```bash
+Question 1: Understanding Docker Images
 docker run --rm python:3.13 pip --version
 
 ## Question 2: Docker Networking
