@@ -9,14 +9,12 @@
 ```bash
 docker run --rm python:3.13 pip --version
 
-**Answer**: 25.3 
-
 ## Question 2: Docker Networking
 From the docker-compose file, pgadmin connects to:
 Hostname: db (service name)
 Port: 5432 (container port)
 
-**Answer**:db:5432
+
 
 Explanation:
 In Docker Compose, containers use service names as hostnames within the network.
@@ -33,7 +31,7 @@ WHERE lpep_pickup_datetime >= '2025-11-01'
   AND lpep_pickup_datetime < '2025-12-01'
   AND trip_distance <= 1;
 
-**Answer**: 8007
+
 
 
 ## Question 4: Longest trip each day
@@ -47,9 +45,6 @@ GROUP BY DATE(lpep_pickup_datetime)
 ORDER BY max_distance DESC
 LIMIT 1;
 
-**Answer**:     
-day : 2025-11-14 
-max_distance: 88.03
 
 
 
@@ -68,9 +63,6 @@ GROUP BY z."Zone"
 ORDER BY total_amount_sum DESC
 LIMIT 1;
 
-**Answer**: 
-pickup_zone: East Harlem North 
-total_amount_sum: $9281.92
  | 
 
 
@@ -91,15 +83,12 @@ GROUP BY dz."Zone"
 ORDER BY largest_tip DESC
 LIMIT 1;
 
-**Answer**: 
-dropoff_zone: Yorkville West
-largest_tip: 81.89
 
 
 
 ## Question 7: Terraform Workflow
 
-**Answer**: terraform init, terraform apply -auto-approve, terraform destroy
+terraform init, terraform apply -auto-approve, terraform destroy
 
 
 Files Included:
