@@ -1,5 +1,3 @@
-version: '3.8'
-
 volumes:
   ny_taxi_postgres_data:
     driver: local
@@ -77,6 +75,11 @@ services:
               basePath: "/app/storage"
           queue:
             type: postgres
+          ai:
+            type: "gemini"
+            gemini:
+              api-key: ${GEMINI_API_KEY}
+              model-name: gemini-2.5-flash
           tasks:
             tmpDir:
               path: /tmp/kestra-wd/tmp
