@@ -1,0 +1,81 @@
+~~ Module 3: BigQuery Optimization ~~ 
+~~ Homework ReadMe ~~
+
+Question 1: 
+CREATE OR REPLACE TABLE `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_Jan_to_June_2024` AS  -- Combines all the data (from Jan - June2024) into one
+SELECT * FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_external_2024-01`
+UNION ALL
+SELECT * FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_external_2024-02`
+UNION ALL
+SELECT * FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_external_2024-03`
+UNION ALL
+SELECT * FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_external_2024-04`
+UNION ALL
+SELECT * FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_external_2024-05`
+UNION ALL
+SELECT * FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_external_2024-06`;
+
+
+
+SELECT  COUNT (*) FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_Jan_to_June_2024`;  --Count the number of rows after combining the data
+
+P.S: You can view this on the preview pane.
+
+
+Question 2:
+
+CREATE OR REPLACE EXTERNAL TABLE `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_external` -- Create external table (Question 2)
+OPTIONS (
+  format = 'PARQUET',
+  uris = ['gs://module_3_om/yellow_tripdata_2024-*.parquet']
+);
+
+
+-- On external table:
+SELECT COUNT(DISTINCT PULocationID) 
+FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_external`;
+
+-- On materialized table:
+SELECT COUNT(DISTINCT PULocationID) 
+FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_Jan_to_June_2024`;
+
+
+Question 4:
+
+SELECT COUNT (*) 
+FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_Jan_to_June_2024`
+WHERE `fare_amount` = 0;
+
+Question 5
+CREATE OR REPLACE TABLE `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_optimized`
+PARTITION BY DATE(tpep_dropoff_datetime)
+CLUSTER BY VendorID AS
+SELECT * FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_Jan_to_June_2024`;
+
+
+Question 6: 
+SELECT DISTINCT(`VendorID`),
+`tpep_dropoff_datetime`
+FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_Jan_to_June_2024`
+WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';
+
+SELECT DISTINCT(`VendorID`),
+`tpep_dropoff_datetime`
+FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_optimized`
+WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';
+
+
+-- Check column type
+SELECT column_name, data_type 
+FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata`.INFORMATION_SCHEMA.COLUMNS
+WHERE table_name = 'yellow_taxi_Jan_to_June_2024'
+AND column_name = 'tpep_dropoff_datetime';
+
+
+Question 9
+SELECT COUNT(*) 
+FROM `ny-rides-first-project-om.taxi_data_yellow_tripdata.yellow_taxi_Jan_to_June_2024`;
+BigQuery could not compute bytes processed estimate for script.
+
+This query will process 0 B when run. This is because BigQuery caches metadata about row counts.
+
