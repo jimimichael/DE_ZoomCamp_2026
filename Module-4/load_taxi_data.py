@@ -14,33 +14,20 @@ BUCKET_NAME = "module_3_om"
 # Prefer using the GOOGLE_APPLICATION_CREDENTIALS env var if set, otherwise
 # fall back to Application Default Credentials.
 CREDENTIALS_FILE = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-
-# If no env var set, look for service account file in current directory
-if not CREDENTIALS_FILE:
-    possible_files = [f for f in os.listdir(".") if f.endswith(".json") and "project" in f.lower()]
-    if possible_files:
-        CREDENTIALS_FILE = possible_files[0]
-        print(f"Using service account file: {CREDENTIALS_FILE}")
-
 if CREDENTIALS_FILE and os.path.exists(CREDENTIALS_FILE):
     client = storage.Client.from_service_account_json(CREDENTIALS_FILE)
 else:
-    try:
-        client = storage.Client()
-    except Exception as e:
-        print(f"Error initializing GCS client: {e}")
-        print("Please set GOOGLE_APPLICATION_CREDENTIALS env var or place a service account JSON file in the current directory")
-        sys.exit(1)
+    client = storage.Client()
 # If commented initialize client with the following
 # client = storage.Client(project='zoomcamp-mod3-datawarehouse')
 
 
-# Define URLs and data for both green and yellow trip data for 2019-2020
-# Using GitHub releases: https://github.com/DataTalksClub/nyc-tlc-data/releases
-GITHUB_RELEASES_BASE = "https://github.com/DataTalksClub/nyc-tlc-data/releases/download"
-DATA_TYPES = ["yellow", "green"]
-YEARS = ["2019", "2020"]
-MONTHS = [f"{i:02d}" for i in range(1, 13)]
+# Define URLs and months for both green and yellow trip data
+DATA_TYPES = {
+    "yellow": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-",
+    "green": "https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_2024-"
+}
+MONTHS = [f"{i:02d}" for i in range(1, 7)]
 DOWNLOAD_DIR = "."
 
 CHUNK_SIZE = 8 * 1024 * 1024
@@ -51,22 +38,15 @@ bucket = client.bucket(BUCKET_NAME)
 
 
 def download_file(args):
-    data_type, year, month = args
-    file_path = os.path.join(DOWNLOAD_DIR, f"{data_type}_tripdata_{year}-{month}.parquet")
-    
-    # Check if file already exists locally
-    if os.path.exists(file_path):
-        print(f"File already exists, skipping download: {file_path}")
-        return (data_type, file_path)
-    
-    # Construct GitHub releases URL
-    url = f"{GITHUB_RELEASES_BASE}/{data_type}/{year}-{month}/{data_type}_tripdata_{year}-{month}.parquet"
+    data_type, month = args
+    url = f"{DATA_TYPES[data_type]}{month}.parquet"
+    file_path = os.path.join(DOWNLOAD_DIR, f"{data_type}_tripdata_2024-{month}.parquet")
 
     try:
         print(f"Downloading {url}...")
         urllib.request.urlretrieve(url, file_path)
         print(f"Downloaded: {file_path}")
-        return (data_type, file_path)
+        return file_path
     except Exception as e:
         print(f"Failed to download {url}: {e}")
         return None
@@ -105,11 +85,8 @@ def verify_gcs_upload(blob_name):
     return storage.Blob(bucket=bucket, name=blob_name).exists(client)
 
 
-def upload_to_gcs(args, max_retries=3):
-    data_type, file_path = args
-    file_name = os.path.basename(file_path)
-    # Create folder structure: yellow_tripdata/ or green_tripdata/
-    blob_name = f"{data_type}_tripdata/{file_name}"
+def upload_to_gcs(file_path, max_retries=3):
+    blob_name = os.path.basename(file_path)
     blob = bucket.blob(blob_name)
     blob.chunk_size = CHUNK_SIZE
 
@@ -117,7 +94,7 @@ def upload_to_gcs(args, max_retries=3):
 
     for attempt in range(max_retries):
         try:
-            print(f"Uploading {file_path} to {BUCKET_NAME}/{blob_name} (Attempt {attempt + 1})...")
+            print(f"Uploading {file_path} to {BUCKET_NAME} (Attempt {attempt + 1})...")
             blob.upload_from_filename(file_path)
             print(f"Uploaded: gs://{BUCKET_NAME}/{blob_name}")
 
@@ -137,18 +114,13 @@ def upload_to_gcs(args, max_retries=3):
 if __name__ == "__main__":
     create_bucket(BUCKET_NAME)
 
-    # Create list of (data_type, year, month) tuples for both green and yellow data across 2019-2020
-    download_tasks = [(data_type, year, month) for data_type in DATA_TYPES for year in YEARS for month in MONTHS]
+    # Create list of (data_type, month) tuples for both green and yellow data
+    download_tasks = [(data_type, month) for data_type in DATA_TYPES.keys() for month in MONTHS]
 
-    print(f"Preparing to download {len(download_tasks)} files...")
-    
     with ThreadPoolExecutor(max_workers=4) as executor:
         file_paths = list(executor.map(download_file, download_tasks))
 
     with ThreadPoolExecutor(max_workers=4) as executor:
         executor.map(upload_to_gcs, filter(None, file_paths))  # Remove None values
 
-    print("\nAll files processed and verified.")
-    print(f"Files organized in:")
-    print(f"  gs://{BUCKET_NAME}/yellow_tripdata/")
-    print(f"  gs://{BUCKET_NAME}/green_tripdata/")
+    print("All files processed and verified.")
