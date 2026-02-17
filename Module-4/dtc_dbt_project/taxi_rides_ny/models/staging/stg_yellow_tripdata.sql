@@ -1,6 +1,14 @@
+{% if target.name == 'prod' %}
+-- Production: Read all data from GCS
 with source as (
-    select * from {{ source('raw', 'yellow_tripdata') }}
+    select * from read_parquet('gs://module_3_om/yellow_tripdata/*.parquet', union_by_name=true)
 ),
+{% else %}
+-- Dev: Read sample from GCS
+with source as (
+    select * from read_parquet('gs://module_3_om/yellow_tripdata/*.parquet', union_by_name=true)
+),
+{% endif %}
 
 renamed as (
     select

@@ -1,14 +1,12 @@
 {{
   config(
-    materialized='incremental',
-    unique_key='trip_id',
-    incremental_strategy='merge',
-    on_schema_change='append_new_columns'  )
+    materialized='view'
+  )
 }}
 
 -- Fact table containing all taxi trips enriched with zone information
 -- This is a classic star schema design: fact table (trips) joined to dimension table (zones)
--- Materialized incrementally to handle large datasets efficiently
+-- Materialized as a view to handle large datasets efficiently
 
 select
     -- Trip identifiers

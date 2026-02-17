@@ -1,6 +1,14 @@
+{% if target.name == 'prod' %}
+-- Production: Read all data from GCS
 with source as (
-    select * from {{ source('raw', 'green_tripdata') }}
+    select * from read_parquet('gs://module_3_om/green_tripdata/*.parquet', union_by_name=true)
 ),
+{% else %}
+-- Dev: Read sample from GCS
+with source as (
+    select * from read_parquet('gs://module_3_om/green_tripdata/*.parquet', union_by_name=true)
+),
+{% endif %}
 
 renamed as (
     select
@@ -37,7 +45,7 @@ renamed as (
 
 select * from renamed
 
--- Sample records for dev environment using deterministic date filter
+-- Dev: Sample records for dev environment using deterministic date filter
 {% if target.name == 'dev' %}
 where pickup_datetime >= '2019-01-01' and pickup_datetime < '2019-02-01'
 {% endif %}
