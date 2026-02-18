@@ -6,3 +6,4 @@ __pycache__/
 node_modules/
 .DS_Store
 ny-rides-first-project-om-69e6ab7e27ae.json
+*.duckdb
