@@ -97,3 +97,21 @@ sources:
             description: Improvement surcharge
           - name: total_amount
             description: Total amount charged
+      - name: raw_fhv_tripdata
+        description: Raw For-Hire Vehicle trip records (loaded by load_fhv_data.py)
+        loaded_at_field: pickup_datetime
+        columns:
+          - name: dispatching_base_num
+            description: Unique identifier for the dispatching base
+          - name: pickup_datetime
+            description: Date and time when the trip started
+          - name: dropoff_datetime
+            description: Date and time when the trip ended
+          - name: pulocationid
+            description: TLC Taxi Zone where the trip started
+          - name: dolocationid
+            description: TLC Taxi Zone where the trip ended
+          - name: sr_flag
+            description: Shared ride flag (1 = trip involved shared ride)
+          - name: affiliated_base_num
+            description: The affiliated base number if applicable
