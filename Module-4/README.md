@@ -41,6 +41,6 @@ cd /workspaces/DE_ZoomCamp_2026/Module-4/dtc_dbt_project/taxi_rides_ny && duckdb
 "SELECT COUNT(*) as fhv_records, COUNT(DISTINCT dispatching_base_num) as unique_bases FROM dbt_jimimichael_prod.stg_fhv_tripdata; 
 
 SELECT COUNT(*) FROM dbt_jimimichael_prod.stg_fhv_tripdata WHERE pickup_datetime < '2019-02-01';"
-* Add your notes here (above this line)
+
 
 </details>
