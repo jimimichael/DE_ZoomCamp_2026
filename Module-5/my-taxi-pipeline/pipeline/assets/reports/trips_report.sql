@@ -19,8 +19,8 @@ materialization:
 
 columns:
   - name: taxi_type
-    type: TEXT
-    description: Taxi type (e.g., yellow, green)
+    type: INTEGER
+    description: Taxi type code (1=yellow, 2=green)
     primary_key: true
   - name: pickup_date
     type: DATE

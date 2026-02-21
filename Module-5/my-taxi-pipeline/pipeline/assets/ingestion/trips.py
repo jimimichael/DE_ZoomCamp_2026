@@ -108,10 +108,12 @@ def materialize():
     cur = start
     while cur < end:
       for t in taxi_types:
+        # Map taxi types to integer codes: yellow=1, green=2
+        code = 1 if t == "yellow" else 2
         rows.append(
           {
             "pickup_datetime": cur,
-            "taxi_type": t,
+            "taxi_type": code,
             "passenger_count": 1,
             "trip_distance": 1.0,
             "payment_type_id": 1,

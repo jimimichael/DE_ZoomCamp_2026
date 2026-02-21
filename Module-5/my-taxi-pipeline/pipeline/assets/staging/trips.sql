@@ -24,11 +24,10 @@ columns:
     checks:
       - name: not_null
   - name: taxi_type
-    type: TEXT
-    description: Taxi type identifier
+    type: INTEGER
+    description: Taxi type code (1=yellow, 2=green)
     primary_key: false
     nullable: true
-    
 
 custom_checks: []
 

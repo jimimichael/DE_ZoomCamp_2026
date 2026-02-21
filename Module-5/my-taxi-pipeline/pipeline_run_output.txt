@@ -1,0 +1,156 @@
+[1mAnalyzed the pipeline 'my_taxi_pipeline' with 4 assets.
+[0m[32m[0m
+[34;1mPipeline: my_taxi_pipeline [2m(..)[22m
+[0m[32m  No issues found[0m
+[32;1m
+✓ Successfully validated 4 assets across 1 pipeline, all good.
+[0m[1m
+Interval: 2026-02-20T00:00:00Z - 2026-02-20T23:59:59Z
+[0m[1m
+Starting the pipeline execution...
+
+[0m[37;2m[19:03:40][0;22m [2mRunning:  ingestion.payment_lookup[22m
+[37;2m[19:03:40][0;22m [2mRunning:  ingestion.trips[22m
+[37;2m[19:03:40][0;22m [37m[ingestion.trips] >> Installed 1 package in 87ms
+[0m[37;2m[19:03:40][0;22m [37m[ingestion.trips] >> warning: `--no-sync` is a no-op for Python scripts with inline metadata, which always run in isolation
+[0m[37;2m[19:03:41][0;22m [37m[ingestion.trips] Successfully collected the data from the asset, uploading to the destination...
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 2026-02-21 19:03:42,235|[WARNING]|54088|139891383068480|dlt|reference.py|__init__:76|When initializing destination factory of type dlt.destinations.duckdb, argument dest_table is not a valid field in DuckDbClientConfiguration or destination capabilities
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 2026-02-21 19:03:42,235|[WARNING]|54088|139891383068480|dlt|reference.py|__init__:76|When initializing destination factory of type dlt.destinations.duckdb, argument staging_bucket is not a valid field in DuckDbClientConfiguration or destination capabilities
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Initiated the pipeline with the following:
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>   Source: csv / seed.raw
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>   Destination: duckdb / ingestion.payment_lookup
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>   Incremental Strategy: replace
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>   Incremental Key: None
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>   Primary Key: ['payment_type_id']
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>   Pipeline ID: 60911f862bb3aa6c321ed19700e7b396fbf4c7d5cf89203ff59af8406408a265
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Starting the ingestion...
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> --- Extract _60911f862bb3aa6c321ed19700e7tsjyxa4c7d5cf89203ff59af8406408a265 ---
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Resources: 0/1 (0.0%) | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Memory usage: 304.09 MB (15.70%) | CPU usage: 0.00%
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> --- Extract _60911f862bb3aa6c321ed19700e7tsjyxa4c7d5cf89203ff59af8406408a265 ---
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Resources: 0/1 (0.0%) | Time: 0.01s | Rate: 0.00/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> payment_lookup: 7  | Time: 0.00s | Rate: 1048576.00/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Memory usage: 304.09 MB (15.70%) | CPU usage: 0.00%
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> --- Extract _60911f862bb3aa6c321ed19700e7tsjyxa4c7d5cf89203ff59af8406408a265 ---
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Resources: 1/1 (100.0%) | Time: 0.02s | Rate: 48.20/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> payment_lookup: 7  | Time: 0.01s | Rate: 517.41/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Memory usage: 304.09 MB (15.70%) | CPU usage: 0.00%
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>  Normalize _60911f862bb3aa6c321ed19700e7tsjyxa4c7d5cf89203ff59af8406408a265 in 1771700622.4186943 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Files: 0/1 (0.0%) | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Memory usage: 304.34 MB (15.70%) | CPU usage: 0.00%
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>  Normalize _60911f862bb3aa6c321ed19700e7tsjyxa4c7d5cf89203ff59af8406408a265 in 1771700622.4186943 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Files: 0/1 (0.0%) | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Items: 0  | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Memory usage: 304.34 MB (15.70%) | CPU usage: 0.00%
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>  Normalize _60911f862bb3aa6c321ed19700e7tsjyxa4c7d5cf89203ff59af8406408a265 in 1771700622.4186943 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Files: 1/1 (100.0%) | Time: 0.01s | Rate: 84.50/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Items: 7  | Time: 0.01s | Rate: 605.23/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Memory usage: 307.07 MB (15.70%) | CPU usage: 0.00%
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>  Load _60911f862bb3aa6c321ed19700e7tsjyxa4c7d5cf89203ff59af8406408a265 in 1771700622.4186943 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Jobs: 0/1 (0.0%) | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Memory usage: 308.76 MB (15.70%) | CPU usage: 0.00%
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >>  Load _60911f862bb3aa6c321ed19700e7tsjyxa4c7d5cf89203ff59af8406408a265 in 1771700622.4186943 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Jobs: 1/1 (100.0%) | Time: 0.19s | Rate: 5.26/s
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Memory usage: 314.88 MB (15.90%) | CPU usage: 0.00%
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> Successfully finished loading data from 'csv' to 'duckdb' in 0.44 seconds 
+[0m[37;2m[19:03:42][0;22m [36m[ingestion.payment_lookup] >> 
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >> 2026-02-21 19:03:42,833|[WARNING]|54223|140178531112768|dlt|reference.py|__init__:76|When initializing destination factory of type dlt.destinations.duckdb, argument dest_table is not a valid field in DuckDbClientConfiguration or destination capabilities
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >> 2026-02-21 19:03:42,833|[WARNING]|54223|140178531112768|dlt|reference.py|__init__:76|When initializing destination factory of type dlt.destinations.duckdb, argument staging_bucket is not a valid field in DuckDbClientConfiguration or destination capabilities
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >> Initiated the pipeline with the following:
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >>   Source: mmap / asset_data
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >>   Destination: duckdb / ingestion.trips
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >>   Incremental Strategy: append
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >>   Incremental Key: None
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >>   Primary Key: None
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >>   Pipeline ID: 1c640cda117b412bfd31f8d0ccfbc1825fdd42b287add7c24115163f8e9aced4
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:42][0;22m [37m[ingestion.trips] >> Starting the ingestion...
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> --- Extract _1c640cda117b412bfd31f8d0ccfbdalikqd42b287add7c24115163f8e9aced4 ---
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Resources: 0/1 (0.0%) | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Memory usage: 296.46 MB (16.00%) | CPU usage: 0.00%
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> --- Extract _1c640cda117b412bfd31f8d0ccfbdalikqd42b287add7c24115163f8e9aced4 ---
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Resources: 0/1 (0.0%) | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> trips: 2  | Time: 0.00s | Rate: 441505.68/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Memory usage: 298.36 MB (16.00%) | CPU usage: 0.00%
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> --- Extract _1c640cda117b412bfd31f8d0ccfbdalikqd42b287add7c24115163f8e9aced4 ---
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Resources: 1/1 (100.0%) | Time: 0.02s | Rate: 57.28/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> trips: 2  | Time: 0.01s | Rate: 144.07/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Memory usage: 298.36 MB (16.00%) | CPU usage: 0.00%
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >>  Normalize _1c640cda117b412bfd31f8d0ccfbdalikqd42b287add7c24115163f8e9aced4 in 1771700623.0454962 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Files: 0/1 (0.0%) | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Memory usage: 301.34 MB (15.90%) | CPU usage: 0.00%
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >>  Normalize _1c640cda117b412bfd31f8d0ccfbdalikqd42b287add7c24115163f8e9aced4 in 1771700623.0454962 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Files: 0/1 (0.0%) | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Items: 0  | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Memory usage: 301.34 MB (15.90%) | CPU usage: 0.00%
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >>  Normalize _1c640cda117b412bfd31f8d0ccfbdalikqd42b287add7c24115163f8e9aced4 in 1771700623.0454962 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Files: 1/1 (100.0%) | Time: 0.01s | Rate: 124.45/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Items: 2  | Time: 0.01s | Rate: 257.03/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Memory usage: 302.61 MB (15.90%) | CPU usage: 0.00%
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >>  Load _1c640cda117b412bfd31f8d0ccfbdalikqd42b287add7c24115163f8e9aced4 in 1771700623.0454962 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Jobs: 0/1 (0.0%) | Time: 0.00s | Rate: 0.00/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Memory usage: 302.61 MB (15.90%) | CPU usage: 0.00%
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >>  Load _1c640cda117b412bfd31f8d0ccfbdalikqd42b287add7c24115163f8e9aced4 in 1771700623.0454962 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Jobs: 1/1 (100.0%) | Time: 0.19s | Rate: 5.26/s
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Memory usage: 310.98 MB (16.00%) | CPU usage: 0.00%
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> Successfully finished loading data from 'mmap' to 'duckdb' in 0.46 seconds 
+[0m[37;2m[19:03:43][0;22m [37m[ingestion.trips] >> 
+[0m[37;2m[19:03:43][0;22m [32mFinished: ingestion.payment_lookup [2m(3.143s)[22m[0m
+[37;2m[19:03:43][0;22m [2mRunning:  ingestion.payment_lookup:payment_type_name:not_null[22m
+[37;2m[19:03:43][0;22m [2mRunning:  ingestion.payment_lookup:payment_type_id:unique[22m
+[37;2m[19:03:43][0;22m [2mRunning:  ingestion.payment_lookup:payment_type_id:not_null[22m
+[37;2m[19:03:43][0;22m [32mFinished: ingestion.payment_lookup:payment_type_name:not_null [2m(36ms)[22m[0m
+[37;2m[19:03:43][0;22m [32mFinished: ingestion.payment_lookup:payment_type_id:not_null [2m(70ms)[22m[0m
+[37;2m[19:03:43][0;22m [32mFinished: ingestion.payment_lookup:payment_type_id:unique [2m(142ms)[22m[0m
+[37;2m[19:03:44][0;22m [37m[ingestion.trips] Successfully loaded the data from the asset into the destination.
+[0m[37;2m[19:03:44][0;22m [32mFinished: ingestion.trips [2m(3.725s)[22m[0m
+[37;2m[19:03:44][0;22m [2mRunning:  staging.trips[22m
+[37;2m[19:03:44][0;22m [32mFinished: staging.trips [2m(93ms)[22m[0m
+[37;2m[19:03:44][0;22m [2mRunning:  staging.trips:pickup_datetime:not_null[22m
+[37;2m[19:03:44][0;22m [32mFinished: staging.trips:pickup_datetime:not_null [2m(33ms)[22m[0m
+[37;2m[19:03:44][0;22m [2mRunning:  reports.trips_report[22m
+[37;2m[19:03:44][0;22m [31mFailed: reports.trips_report [2m(54ms)[22m[0m
+
+==================================================
+
+[32mPASS[0m ingestion.payment_lookup [32m.[0m[32m.[0m[32m.[0m
+[32mPASS[0m ingestion.trips 
+[32mPASS[0m staging.trips [32m.[0m
+[31mFAIL[0m reports.trips_report [33mU[0m
+[m
+
+bruin run completed with [31mfailures[0m in 3.907s
+
+[0m[m [31m✗[0m Assets executed      [31m1 failed[0m / [32m3 succeeded[0m / [2m1 skipped[22m
+[0m[m [31m✗[0m Quality checks       [32m4 succeeded[0m / [2m1 skipped[22m
+[0m
+
+[31m1 assets failed[0m
+└── [33mreports.trips_report[0m
+    └── [31mInternal: Catalog Error: Table with name trips_report does not exist!
+        Did you mean "ingestion.trips or staging.trips"?
+        
+        LINE 2: DELETE FROM reports.trips_report WHERE pickup_datetime BETWEEN '2026-02-20' AND '2026...
+                                              ^[0m
+
