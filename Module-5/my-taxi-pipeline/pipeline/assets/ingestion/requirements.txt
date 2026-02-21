@@ -3,7 +3,7 @@
 # - Pin versions for reproducibility.
 # Docs: https://getbruin.com/docs/bruin/assets/python
 #
-# Example:
-# pandas==2.2.0
+# pandas for DataFrame materialization
+pandas==2.2.0
 # requests==2.31.0
 
