@@ -28,7 +28,7 @@ columns:
     description: Taxi type identifier
     primary_key: false
     nullable: true
-    checks: []
+    
 
 custom_checks: []
 
