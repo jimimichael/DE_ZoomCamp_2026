@@ -13,9 +13,7 @@ depends:
 
 materialization:
   type: table
-  strategy: time_interval
-  incremental_key: pickup_datetime
-  time_granularity: timestamp
+  strategy: create+replace
 
 columns:
   - name: pickup_datetime
@@ -30,8 +28,7 @@ columns:
     description: Taxi type identifier
     primary_key: false
     nullable: true
-    checks:
-      - name: non_negative
+    checks: []
 
 custom_checks: []
 
