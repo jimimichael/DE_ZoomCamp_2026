@@ -8,3 +8,9 @@ node_modules/
 ny-rides-first-project-om-69e6ab7e27ae.json
 *.duckdb
 *.parquet
+
+.bruin.yml
+logs/runs
+logs/*.log
+*.py[cod]
+logs/queries
