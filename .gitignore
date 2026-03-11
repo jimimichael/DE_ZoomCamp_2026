@@ -14,3 +14,15 @@ logs/runs
 logs/*.log
 *.py[cod]
 logs/queries
+
+# Ignore generated notebook environments and large local datasets
+Module-6/notebooks/.venv/
+Module-6/notebooks/.ipynb_checkpoints/
+Module-6/notebooks/*.parquet.*
+Module-6/notebooks/yellow_tripdata_2025-11_4partitions/
+Module-6/notebooks/zones/
+Module-6/notebooks/*.csv
+
+# Ignore cursor + dlt metadata
+.cursor/
+.dlt/
