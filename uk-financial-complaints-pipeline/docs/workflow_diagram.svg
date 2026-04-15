@@ -17,7 +17,7 @@
 
   <rect x="340" y="40" width="220" height="120" class="box" />
   <text x="450" y="80" class="title" text-anchor="middle">GCS Raw Storage</text>
-  <text x="450" y="115" class="label" text-anchor="middle">gs://uk-complaints-analytics-raw-complaints</text>
+  <text x="470" y="105" class="label" text-anchor="middle">gs://uk-complaints-analytics-raw-complaints</text>
   <text x="450" y="125" class="label" text-anchor="middle">Excel files uploaded from DLT</text>
 
   <rect x="640" y="40" width="240" height="120" class="box" />
