@@ -47,14 +47,14 @@
   <text x="630" y="260" class="label" text-anchor="middle">Analytics tables in</text>
   <text x="630" y="280" class="label" text-anchor="middle">gold_complaints</text>
 
-  <!-- Arrow row 2 -->
+  <!-- Arrow row 2 - from dbt Silver to dbt Gold -->
   <path d="M380 260 L520 260" class="arrow" />
 
   <!-- Looker Studio Dashboard -->
   <rect x="240" y="340" width="220" height="60" class="box" />
   <text x="350" y="375" class="title" text-anchor="middle">Looker Studio Dashboard</text>
 
-  <!-- Arrow to dashboard -->
+  <!-- Arrow from dbt Gold to Dashboard -->
   <path d="M630 260 L630 340" class="arrow" />
   <path d="M630 340 L460 340" class="arrow" />
 </svg>
