@@ -55,6 +55,5 @@
   <text x="350" y="375" class="title" text-anchor="middle">Looker Studio Dashboard</text>
 
   <!-- Arrow from dbt Gold to Dashboard -->
-  <path d="M630 260 L630 340" class="arrow" />
   <path d="M630 340 L460 340" class="arrow" />
 </svg>
