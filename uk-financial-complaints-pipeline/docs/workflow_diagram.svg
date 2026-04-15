@@ -1,0 +1,48 @@
+<svg width="960" height="420" viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="UK Complaints Pipeline Workflow">
+  <style>
+    .box { fill: #f7fafc; stroke: #2b6cb0; stroke-width: 2; rx: 12; }
+    .title { font: 600 18px 'Segoe UI', sans-serif; fill: #2d3748; }
+    .label { font: 400 14px 'Segoe UI', sans-serif; fill: #2d3748; }
+    .arrow { stroke: #2b6cb0; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2b6cb0" />
+    </marker>
+  </defs>
+  <rect x="40" y="40" width="220" height="120" class="box" />
+  <text x="150" y="80" class="title" text-anchor="middle">FCA Excel Source</text>
+  <text x="150" y="105" class="label" text-anchor="middle">Public FCA complaints data</text>
+  <text x="150" y="125" class="label" text-anchor="middle">(Aggregate + Firm-level)</text>
+
+  <rect x="340" y="40" width="220" height="120" class="box" />
+  <text x="450" y="80" class="title" text-anchor="middle">GCS Raw Storage</text>
+  <text x="450" y="105" class="label" text-anchor="middle">gs://uk-complaints-analytics-raw-complaints</text>
+  <text x="450" y="125" class="label" text-anchor="middle">Excel files uploaded from DLT</text>
+
+  <rect x="640" y="40" width="240" height="120" class="box" />
+  <text x="760" y="80" class="title" text-anchor="middle">BigQuery Bronze</text>
+  <text x="760" y="105" class="label" text-anchor="middle">Dataset: bronze_complaints</text>
+  <text x="760" y="125" class="label" text-anchor="middle">Raw source tables</text>
+
+  <path d="M260 100 L340 100" class="arrow" />
+  <path d="M560 100 L640 100" class="arrow" />
+
+  <rect x="160" y="200" width="220" height="120" class="box" />
+  <text x="270" y="235" class="title" text-anchor="middle">dbt Silver</text>
+  <text x="270" y="260" class="label" text-anchor="middle">Cleaned + standardized</text>
+  <text x="270" y="280" class="label" text-anchor="middle">views in silver_complaints</text>
+
+  <rect x="520" y="200" width="220" height="120" class="box" />
+  <text x="630" y="235" class="title" text-anchor="middle">dbt Gold</text>
+  <text x="630" y="260" class="label" text-anchor="middle">Analytics tables in</text>
+  <text x="630" y="280" class="label" text-anchor="middle">gold_complaints</text>
+
+  <path d="M360 260 L520 260" class="arrow" />
+
+  <rect x="240" y="340" width="220" height="60" class="box" />
+  <text x="350" y="375" class="title" text-anchor="middle">Looker Studio Dashboard</text>
+
+  <path d="M620 260 L620 340" class="arrow" />
+  <path d="M620 340 L460 340" class="arrow" />
+</svg>
