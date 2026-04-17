@@ -232,7 +232,7 @@ uk-financial-complaints-pipeline/
 ---
 
 ## Dashboard (Looker Studio)
-# url: https://datastudio.google.com/reporting/d27aae31-ed68-4c4a-a576-e73a0ea7b02c
+url: https://datastudio.google.com/reporting/d27aae31-ed68-4c4a-a576-e73a0ea7b02c
 
 
 <img width="1039" height="741" alt="image" src="https://github.com/user-attachments/assets/a89e8c45-6bc8-460a-a2b9-be641e710371" />
