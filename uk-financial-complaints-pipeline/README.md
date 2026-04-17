@@ -216,18 +216,20 @@ uk-financial-complaints-pipeline/
 ## Kestra Orchestration:
 <img width="940" height="59" alt="image" src="https://github.com/user-attachments/assets/d18b4cb2-961f-40fb-b114-99e5294940ed" />
 
+---
 
 <img width="940" height="59" alt="image" src="https://github.com/user-attachments/assets/20d22d3d-39bc-4e27-b4ed-a28f764f34f5" />
 
-
+---
 
 <img width="846" height="932" alt="image" src="https://github.com/user-attachments/assets/8c0dd0cf-b72a-4131-ab98-5a3d1a143cdf" />
 
-
+---
 
 ## Big Query (GCP)
 <img width="1224" height="649" alt="image" src="https://github.com/user-attachments/assets/eb067d11-698e-42a5-8791-168b9581629f" />
 
+---
 
 ## Dashboard (Looker Studio)
 # url: https://datastudio.google.com/reporting/d27aae31-ed68-4c4a-a576-e73a0ea7b02c
@@ -235,8 +237,11 @@ uk-financial-complaints-pipeline/
 
 <img width="1039" height="741" alt="image" src="https://github.com/user-attachments/assets/a89e8c45-6bc8-460a-a2b9-be641e710371" />
 
+---
 
 <img width="959" height="704" alt="image" src="https://github.com/user-attachments/assets/70af4736-b56a-4900-8f61-f41652c1e312" />
+
+---
 
 ## Resources
 - FCA Complaint Data (UK public CKAN): https://www.gov.uk/government/statistical-data-sets/financial-conduct-authority-complaints-data
