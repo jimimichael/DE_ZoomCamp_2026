@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: fct_complaints_monthly
+    description: "Gold fact table aggregates complaint totals, redress paid, provision amounts, and raw metric totals."
+    columns:
+      - name: total_redress_paid
+        description: "Sum of redress amounts for the grouping."
+        tests:
+          - not_null:
+              arguments:
+                where: "LOWER(metric_type) = 'redress paid'"
+      - name: total_provision_amount
+        description: "Sum of provision amounts for the grouping."
+        tests:
+          - not_null:
+              arguments:
+                where: "LOWER(metric_type) = 'provision'"
+      - name: total_metric_value
+        description: "Sum of raw source metric values for the grouping."
+        tests:
+          - not_null

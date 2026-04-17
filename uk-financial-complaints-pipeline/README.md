@@ -1,5 +1,7 @@
 # UK Financial Complaints Analytics Platform
 
+![CI](https://github.com/jimimichael/DE_ZoomCamp_2026/actions/workflows/uk_complaints_pipeline_ci.yml/badge.svg)
+
 Capstone project for Data Engineering Zoomcamp 2026.
 
 ## Project Summary
@@ -152,14 +154,30 @@ Execute `kestra/flows/uk_complaints_pipeline.yml` in Kestra to run ingestion and
 - `bronze_complaints.complaints_firm_specific`
 
 ### Silver layer
-- `silver_complaints.int_complaints_aggregate_cleaned`
+- `silver_complaints.int_complaints_aggregate_cleaned` — separates complaint metrics from raw redress and provision values so `complaint_count` only reflects complaint totals
 - `silver_complaints.int_complaints_firm_cleaned`
 
 ### Gold layer
 - `gold_complaints.dim_product`
 - `gold_complaints.dim_firm`
-- `gold_complaints.fct_complaints_monthly`
-- `gold_complaints.fct_complaints_semiannual`
+- `gold_complaints.fct_complaints_monthly` — now includes complaint totals plus aggregated redress and provision amounts for dashboard metrics; schema tests verify redress and provision fields are populated for the correct metric types
+- `gold_complaints.fct_complaints_semiannual` — now surfaces raw metric values alongside complaint totals, redress, and provision data
+
+### Dashboard query example
+```sql
+SELECT
+  complaint_period,
+  product_group,
+  metric_type,
+  total_complaints,
+  total_redress_paid,
+  total_provision_amount,
+  total_metric_value
+FROM `uk-complaints-analytics.gold_complaints.fct_complaints_monthly`
+WHERE metric_type IN ('Complaints received', 'Redress paid', 'Provision')
+ORDER BY complaint_period DESC, product_group, metric_type;
+```
+This query makes the redress and provision amounts explicit for dashboard widgets while keeping complaint totals separate.
 
 ## Metadata and Data Dictionary
 Field-level metadata and model details are available in `docs/metadata_dictionary.md`.
@@ -168,6 +186,7 @@ Field-level metadata and model details are available in `docs/metadata_dictionar
 - The project uses `europe-west2` for all GCP resources.
 - `GOOGLE_APPLICATION_CREDENTIALS` must point to your service account JSON key.
 - `dlt/complaints_pipeline_complete.py` loads the current bronze dataset `bronze_complaints` in project `uk-complaints-analytics`.
+- `bronze_complaints.complaints_aggregate` preserves raw source volumes in `metric_value`; `silver_complaints.int_complaints_aggregate_cleaned` derives `complaint_count` only for complaint metrics and excludes redress/provision amounts from complaint totals.
 - Firm-level staging may require schema alignment before full firm-specific analytics are available.
 
 ## CI/CD
@@ -178,6 +197,8 @@ Workflow file:
 - `.github/workflows/uk_complaints_pipeline_ci.yml`
 
 Optional dbt compilation can run if `GCP_SERVICE_ACCOUNT_KEY` is provided as a repository secret.
+
+See `GITHUB_ACTIONS.md` in the repository root for workflow details and secret configuration.
 
 ## Project Structure
 ```
